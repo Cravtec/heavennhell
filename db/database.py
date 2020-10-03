@@ -65,8 +65,8 @@ class Course(Base):
     departments = relationship("Department", back_populates="courses")
 
     # one to one relationships
-    online = relationship("Online", uselist=False, back_populates="course")
-    onsite = relationship("Onsite", uselist=False, back_populates="course")
+    course_type = relationship("Online", uselist=False, back_populates="course")
+    # onsite = relationship("Onsite", uselist=False, back_populates="course")
 
     # many to many relationship with [students] table and [grades] association table
     students = relationship("Grade", back_populates="course")
@@ -78,8 +78,8 @@ class Course(Base):
         return f"Course id: {self.id} name: {self.name} ects: {self.ects}"
 
 
-class Online(Base):
-    __tablename__ = "online"
+class CurseType(Base):
+    __tablename__ = "course_type"
 
     id_course = Column(Integer, ForeignKey('courses.id'), primary_key=True)
     url = Column(String)

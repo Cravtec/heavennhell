@@ -22,16 +22,43 @@ if __name__ == '__main__':
     separator()
 
     print('!!!!! Display departments with budget higher than 500 000 !!!!!')
-    for dep in session.query(Department).filter(Department.budget > 500000):
-        print(dep)
+    [print(dep) for dep in session.query(Department).filter(Department.budget > 500000)]
     separator()
 
-    print("!!!!! Display employees hired in 2018 !!!!!")
-    for emp in session.query(Employee.start_date).filter(Employee.start_date > date(2018, 1, 1)):
-        print(emp)
+    print("!!!!! Display employees hired in 2017 !!!!!")
+    [print(emp) for emp in session.query(Employee).filter(Employee.start_date) if emp.start_date.year == 2017]
+    separator()
+
+    print("!!!!! Display employees hired over 2017 !!!!!")
+    [print(emp) for emp in session.query(Employee).filter(Employee.start_date) if emp.start_date.year > 2017]
+    separator()
+
+    print("!!!!! Display all onsite courses !!!!")
+
+    print("!!!!! Display all schools related to first department !!!!")
+
+    print("!!!!! Add new student !!!!")
+
+    print("!!!!! Add new exams grades for this student !!!!")
+
+    print("!!!!! Delete student and all related grades !!!!")
+
+    print("!!!!! Show all students with failed exams !!!!")
+
+    print("!!!!! Count average grades from students and sort then from best to worst. !!!!")
+    print("!!!!! Display also students who not passed all exams !!!!")
+
+    print("!!!!! Display all onsite courses !!!!")
+
+
+
+
+
+
 
 # todo display tables
 # todo add data into tables
 # todo display merged, sorted ordered tables
 # todo check relations between tables
 # todo delete records, be aware of deleting also related data in tables
+# todo test switching to mysql tables
