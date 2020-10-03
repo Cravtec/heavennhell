@@ -1,5 +1,5 @@
 from datetime import datetime, date
-from db.database import Course, Department, Employee, Student, Grade, Online, Onsite, Supervisor, Instructor
+from db.database import Course, Department, Employee, Student, Grade, Online, Onsite, Instructor
 
 
 def bootstrap_courses(session):
@@ -38,7 +38,8 @@ def bootstrap_departments(session):
     session.add_all([
         Department(name=name,
                    budget=budget,
-                   address=address)
+                   address=address,
+                   id_supervisor=10)
         for name, budget, address in departments
     ])
     session.commit()
@@ -172,21 +173,6 @@ def bootstrap_onsite(session):
     session.commit()
 
 
-def bootstrap_supervisors(session):
-    values = [
-        (10, 1, date(2012, 10, 9)),
-        (10, 2, date(2012, 10, 9)),
-        (10, 3, date(2012, 10, 9)),
-        (10, 4, date(2012, 10, 9)),
-        (10, 5, date(2012, 10, 9))
-    ]
-    session.add_all([
-        Supervisor(id_employee=emp, id_department=dep, start_date=start)
-        for emp, dep, start in values
-    ])
-    session.commit()
-
-
 def bootstrap_instructors(session):
     values = [
         (1, 1, date(2018, 1, 26)),
@@ -220,5 +206,4 @@ def bootstrap_db(session):
     bootstrap_grades(session)
     bootstrap_online(session)
     bootstrap_onsite(session)
-    bootstrap_supervisors(session)
     bootstrap_instructors(session)

@@ -32,17 +32,6 @@ class Instructor(Base):
     employee = relationship("Employee", back_populates="courses")
 
 
-class Supervisor(Base):
-    __tablename__ = "supervisors"
-    id_employee = Column(Integer, ForeignKey("employees.id"), primary_key=True)
-    id_department = Column(Integer, ForeignKey("departments.id"), primary_key=True)
-    start_date = Column(Date)
-
-    # many to many relationship
-    employee = relationship("Employee", back_populates="departments")
-    department = relationship("Department", back_populates="employees")
-
-
 # old supervisor association table. I do not know how to put data in
 # supervisor = Table("supervisors", Base.metadata,
 #                    Column("id_employee", ForeignKey("employees.id")),
@@ -65,8 +54,8 @@ class Course(Base):
     departments = relationship("Department", back_populates="courses")
 
     # one to one relationships
-    course_type = relationship("Online", uselist=False, back_populates="course")
-    # onsite = relationship("Onsite", uselist=False, back_populates="course")
+    online = relationship("Online", uselist=False, back_populates="course")
+    onsite = relationship("Onsite", uselist=False, back_populates="course")
 
     # many to many relationship with [students] table and [grades] association table
     students = relationship("Grade", back_populates="course")
@@ -78,8 +67,8 @@ class Course(Base):
         return f"Course id: {self.id} name: {self.name} ects: {self.ects}"
 
 
-class CurseType(Base):
-    __tablename__ = "course_type"
+class Online(Base):
+    __tablename__ = "online"
 
     id_course = Column(Integer, ForeignKey('courses.id'), primary_key=True)
     url = Column(String)
@@ -129,8 +118,8 @@ class Employee(Base):
     # many to many relationship with [courses] table and [instructor] association table
     courses = relationship("Instructor", back_populates="employee")
 
-    # many to many relationship with [departments] table and [supervisor] association table
-    departments = relationship("Supervisor", back_populates="employee")
+    # one to one relationship with [departments] table
+    departments = relationship("Department", back_populates="employee")
 
     def __repr__(self):
         return f"Employee id:{self.id}, name: {self.first_name} {self.last_name}"
@@ -144,8 +133,9 @@ class Department(Base):
     budget = Column(Numeric(7, 2))
     address = Column(String)
 
-    # many to many relationship with [employees] table and [supervisor] association table
-    employees = relationship("Supervisor", back_populates="department")
+    # one to one relationship with employees
+    id_supervisor = Column(Integer, ForeignKey('employees.id'))
+    employee = relationship("Employee", uselist=False, back_populates="departments")
 
     # one department to many courses relationship
     courses = relationship("Course", back_populates="departments")
