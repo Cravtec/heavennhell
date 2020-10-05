@@ -71,11 +71,11 @@ def bootstrap_students(session):
         ("Brad", "Marble", "Blank st. 4, Berlin", 89381898955, 115821412),
         ("Paul", "Candle", "Dirty st. 64, Kiev", 89381898742, 115238412),
         ("Jessica", "Sweet", "Snowy st. 5, NY", 89381898713, 115832412),
-        ("Nick", "Curtain", "Windy st. 2, Orlando", 89381478745, 115888972),
-        ("Pamela", "Salt", "Chopin st. 8, Bydgoszcz", 89388498745, 115888842),
-        ("Nicolas", "Paper", "Lewinski st. 21, Gotham", 89381893445, 115888454),
-        ("Georgia", "Horror", "Obama st. 7, Disneyland", 89381876745, 115888252),
-        ("Bill", "Blacksmith", "Kaczyński st. 9, Watershed", 89121898745, 115834412),
+        ("Nick", "Curtain", "Windy st. 2, Orlando", 89381478225, 115888972),
+        ("Pamela", "Salt", "Chopin st. 8, Bydgoszcz", 89388448725, 115888842),
+        ("Nicolas", "Paper", "Lewinski st. 21, Gotham", 89381093415, 115888454),
+        ("Georgia", "Horror", "Obama st. 7, Disneyland", 89081876705, 115888252),
+        ("Bill", "Blacksmith", "Kaczyński st. 9, Watershed", 89121898675, 115834412),
         ("Phil", "Toe", "Park st. 1, Blackwater", 89381893445, 245883412),
     ]
     session.add_all([
